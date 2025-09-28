@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sourasish Mukherjee - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Mobile Responsiveness for screens <= 768px */
+@media (max-width: 768px) {
+    /* Navigation */
+    .nav-links {
+        display: none; /* You may later implement hamburger menu */
+    }
+
+    /* Hero Section */
+    .hero h1 {
+        font-size: 2rem;
+        padding: 0 1rem;
+    }
+    .hero .subtitle {
+        font-size: 1rem;
+    }
+    .hero .description {
+        font-size: 0.9rem;
+        padding: 0 1rem;
+    }
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* About Section */
+    .about-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .story-image {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 1.5rem;
+    }
+    .about-text h3 {
+        font-size: 1.5rem;
+    }
+    .about-text p {
+        font-size: 0.95rem;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Education & Repo Cards */
+    .education-card,
+    .repo-card {
+        padding: 1rem;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Project Image */
+    .project-image img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Google Form iframe */
+    .container-contact iframe {
+        width: 100%;
+        height: 800px; /* Adjust as needed */
+    }
+
+    /* Contact Section */
+    .contact-info {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .contact-item h3 {
+        font-size: 1rem;
+    }
+    .contact-item a,
+    .contact-item span,
+    .contact-item div {
+        font-size: 0.9rem;
+    }
+
+    /* Footer */
+    .footer-bottom p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Extra small screens < 480px */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+    .hero .subtitle {
+        font-size: 0.9rem;
+    }
+    .hero .description {
+        font-size: 0.8rem;
+    }
+    .cta-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+
+        .projects-grid a {
+            text-decoration: none;
+            color: inherit;
+            /* optional: makes sure link text inherits the card's text color */
+        }
+
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .container-contact {
+            display: flex;
+            flex-direction: column;
+            /* keeps the title above the iframe */
+            align-items: center;
+            /* horizontal centering */
+            justify-content: center;
+            /* vertical centering if you want it centered in the section */
+            text-align: center;
+            /* centers the heading text */
+            padding: 2rem 0;
+            /* some spacing */
+        }
+
+        .container-contact iframe {
+            width: 100%;
+            max-width: 640px;
+        }
+
+
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff08" points="0,1000 1000,0 1000,1000"/></svg>');
+        }
+
+        .hero-content {
+            color: white;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.4s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #2563eb;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #1f2937;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8fafc;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            font-weight: bold;
+            margin: 0 auto;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .story-image {
+            flex-shrink: 0;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 6px solid white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card h3 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Education Section */
+        .education {
+            background: #f8fafc;
+        }
+
+        .education-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            border-left: 4px solid #2563eb;
+        }
+
+        .education-card h3 {
+            color: #2563eb;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .institution {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .year {
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .project-content p {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            align-items: stretch;
+            /* ensures equal height */
+        }
+
+        .project-card {
+            height: 500px;
+            /* take full height of grid cell */
+            display: flex;
+            flex-direction: column;
+            /* so content stacks vertically */
+        }
+
+        .project-content {
+            flex: 1;
+            /* make content fill available space */
+        }
+
+
+
+
+        /* Repo Section */
+        .repo {
+            background: #f8fafc;
+        }
+
+        .repo-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            border-left: 4px solid #2563eb;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .attraction-card {
+            height: 500px;
+        }
+
+
+        .repo-card h3 {
+            color: #2563eb;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .repo-card .institution {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .repo-card .year {
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .tag {
+            background: #e0e7ff;
+            color: #2563eb;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #ffffff;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">SM</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact_information">Contact Information</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Sourasish Mukherjee</h1>
+                <p class="subtitle">First Year Undergraduate Student @ IIT KHARAGPUR</p>
+                <p class="description">
+                    Manufacturing Science & Engineering student at IIT Kharagpur, passionate about technology,
+                    innovation, and creating impactful solutions. Currently exploring the vast world of
+                    programming and engineering.
+                </p>
+                <a href="#about" class="cta-button">Learn More About Me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="about-content">
+                <div class="about-image fade-in">
+                    <div class="story-image"><img height="200px" width="200px" src="profile_pic.jpg" alt="Profile_Picture"></div>
+                </div>
+                <div class="about-text fade-in">
+                    <h3>Hello, I'm Sourasish!</h3>
+                    <p>
+                        I am a first-year undergraduate student at the prestigious Indian Institute of Technology, Kharagpur, pursuing Manufacturing Science & Engineering in the Department of Mechanical Engineering. Having cleared one of India’s most competitive exams, JEE Advanced, I bring with me a strong foundation of dedication, problem-solving, and discipline—qualities that I now channel into building and delivering high-quality web solutions for clients.
+                    </p>
+                    <p>
+                       Alongside my academic pursuits, I have been actively working on creating, customizing, and selling websites tailored to businesses, startups, and individuals. From intuitive user interfaces to robust backend functionality, I specialize in designing websites that are not only visually appealing but also aligned with my clients’ goals—whether that’s boosting sales, improving online presence, or streamlining operations.
+
+                    </p>
+                    <p>
+                        I believe in combining technical expertise with a client-focused approach. By collaborating closely with businesses and understanding their unique needs, I develop digital solutions that deliver real value. My aim is to help organizations establish a strong online footprint with cost-effective and scalable websites, while continuously improving my skills and staying updated with the latest web technologies.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title fade-in">Skills & Interests</h2>
+            <div class="skills-grid">
+                <div class="skill-card fade-in">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li>C/C++ (Learning)</li>
+                        <li>Python (Learning)</li>
+                        <li>Java Script/ React JS (Exploring)</li>
+                        <li>HTML/CSS (Learning)</li>
+                    </ul>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3>Academic Subjects</h3>
+                    <ul class="skill-list">
+                        <li>Data Structures & Algorithms</li>
+                        <li>Mathematics</li>
+                        <li>Physics</li>
+                        <li>Electrical Technology</li>
+                    </ul>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3>Tools & Technologies</h3>
+                    <ul class="skill-list">
+                        <li>Git & GitHub</li>
+                        <li>VS Code</li>
+                        <li>Bubble</li>
+                        <li>Flutter</li>
+                    </ul>
+                </div>
+                <!-- <div class="skill-card fade-in">
+                    <h3>Soft Skills</h3>
+                    <ul class="skill-list">
+                        <li>Problem Solving</li>
+                        <li>Quick Learning</li>
+                        <li>Team Collaboration</li>
+                        <li>Communication</li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title fade-in">Education</h2>
+            <div class="education-card fade-in">
+                <h3>Bachelor of Technology - Manufacturing Science & Engineering</h3>
+                <div class="institution">Indian Institute of Technology, Kharagpur</div>
+                <div class="year">2025 - 2029</div>
+            </div>
+            <div class="education-card fade-in">
+                <h3>Bachelor of Technology - Computer Science & Engineering</h3>
+                <div class="institution">National Institute of Technology, Durgapur</div>
+                <div class="year">2024 - 2025</div>
+            </div>
+            <div class="education-card fade-in">
+                <h3>Higher Secondary Education</h3>
+                <div class="institution">12th Grade - Science Stream</div>
+                <div class="year">2024</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title fade-in">Portfolio</h2>
+            <div class="projects-grid">
+                <a href="https://sourasish-mukherjee1904.github.io/SWG-WB-Tourism/" class="attraction-card"
+                    onclick="showAttraction('west-bengal-website')">
+                    <div class="project-card fade-in">
+                        <div class="project-image"><img height="200px" width="500px" src="West-Bengal-Tourism_600.jpg"
+                                alt="West Bengal Tourism"></div>
+                        <div class="project-content">
+                            <h3>West Bengal Tourism Website</h3>
+                            <p>This website is a travel guide showcasing West Bengal’s top tourist destinations,
+                                highlighting their culture, heritage, and scenic beauty with descriptions, images, and
+                                contact information.</p>
+                            <div class="project-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">Java Script</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://sourasish-mukherjee1904.github.io/dharna-resort/" class="attraction-card"
+                    onclick="showAttraction('west-bengal-website')">
+                    <div class="project-card fade-in">
+                        <div class="project-image"><img height="200px" width="500px" src="deluxe.jpg"
+                                alt="Resort Website"></div>
+                        <div class="project-content">
+                            <h3>Resort Website</h3>
+                            <p>This is a resort advertisement website. It is built basically to be sold to different
+                                websites which itself does not have a website of their own, or has a very basic non
+                                attractive website.</p>
+                            <div class="project-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">Java Script</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://sourasish-mukherjee1904.github.io/Gravity-Gym/" class="attraction-card"
+                    onclick="showAttraction('west-bengal-website')">
+                    <div class="project-card fade-in">
+                        <div class="project-image"><img height="200px" width="500px" src="gravity.jpg"
+                                alt="Gravity Gym"></div>
+                        <div class="project-content">
+                            <h3>Gravity Gym</h3>
+                            <p>This website is a prototype for a gym's online presence, showcasing its facilities, trainers, and membership options. This is also a responsive website made with the intent of freelancing.</p>
+                            <div class="project-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">Java Script</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://sourasish-mukherjee1904.github.io/drain/" class="attraction-card"
+                    onclick="showAttraction('west-bengal-website')">
+                    <div class="project-card fade-in">
+                        <div class="project-image"><img height="200px" width="500px" src="about-us.jpg.avif"
+                                alt="Dravin Global Website"></div>
+                        <div class="project-content">
+                            <h3>Dravin Global Website</h3>
+                            <p>This website is basically a prototype of an international trading website. It was made in
+                                an attempt to fix bugs and non visually pleasing elements of an international trading
+                                website.</p>
+                            <div class="project-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">Java Script</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1_8xM2BRmJf9SdJtXGPMMMi2UnqoJcI-e/view?usp=sharing" class="attraction-card"
+                    onclick="showAttraction('west-bengal-website')">
+                    <div class="project-card fade-in">
+                        <div class="project-image"><img height="200px" width="500px" src="udaipur.jpeg"
+                                alt="Udaipur Marbles Website"></div>
+                        <div class="project-content">
+                            <h3>Udaipur Marbles Website</h3>
+                            <p>This is a website for a marble supplier based in Udaipur, showcasing their products and services. It is not hosted yet so here only google drive video link is provided. We are sorry for inconvenience.</p>
+                            <div class="project-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">Java Script</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1ejGHC8QOcb99CwU0jNFiqnkpVzvNx5gD/view?usp=sharing" class="attraction-card"
+                    onclick="showAttraction('west-bengal-website')">
+                    <div class="project-card fade-in">
+                        <div class="project-image"><img height="200px" width="500px" src="logo.png"
+                                alt="Ami Bengali Website"></div>
+                        <div class="project-content">
+                            <h3>Ami Bengali Website</h3>
+                            <p>This website for a exquisite branch of restaurants. It website contains their menu items, their specialities. This has not been hosted yet so only google drive video link is provided. We are sorry for inconvenience.</p>
+                            <div class="project-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">Java Script</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+    <section id="repo" class="repo">
+        <div class="container">
+            <h2 class="section-title fade-in">Projects</h2>
+            <div class="projects-grid">
+                <a href="https://github.com/sourasish-mukherjee1904/Guru-Setu" class="attraction-card"
+                    onclick="showAttraction('guru-setu')">
+                    <div class="repo-card fade-in">
+                        <h3>GURU SETU</h3>
+                        <div class="institution">This is basically a startup idea which aims to connect online tutors
+                            with students.</div>
+                        <div class="year">I have done the front end using HTML, CSS & JAVA SCRIPT. The backend is done
+                            using Python Flask, render_template, request, redirect, etc. I have faced a problem that I
+                            the developer could see the password of users, so to avoidnit I hashed the password using
+                            werkzeug.security.</div>
+                    </div>
+                </a>
+                <a href="https://github.com/sourasish-mukherjee1904/Maa-K-Hath-Se.git" class="attraction-card"
+                    onclick="showAttraction('maa-k-hath-se')">
+                    <div class="repo-card fade-in">
+                        <h3>MAA K HATH SE</h3>
+                        <div class="institution">This is also a startup idea which aims at providing a little bit of
+                            income to the Indian moms.</div>
+                        <div class="year">I have done the front end using HTML, CSS & JAVA SCRIPT. The backend is done
+                            using Python Flask, render_template, request, redirect, etc. With learning from GURU SETU
+                            this was a cake walk for me. I really enjoyed working on such an interesting project. It
+                            didn't take me much time to build.</div>
+                    </div>
+                </a>
+                <a href="https://github.com/sourasish-mukherjee1904/Snake-Game.git" class="attraction-card"
+                    onclick="showAttraction('menu')">
+                    <div class="repo-card fade-in">
+                        <h3>SNAKE GAME</h3>
+                        <div class="institution">This is a small attempt to build the legendary snake game.</div>
+                        <div class="year">I have made the game compleetely with python. I have imported thiker. Mainly used random which is used to set different locations to the food the snake needs to eat. As the game progresses the snake eats more the size of the snake increases, the game ends when the snake hits it's own body or any of the boundaries of the game.
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    </section>
+
+    <!-- Google Form Section -->
+    <section id="contact_information">
+        <div class="container-contact">
+            <h2 class="section-title fade-in">Contact Information</h2>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSexv97gR7v4R_pVSjW0SN487FssBzD8DIiVKoTNTWJOWutczQ/viewform?embedded=true" width="640" height="689" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title" style="color: white;">Get In Touch</h2>
+                <p>I'm always excited to connect with fellow students, mentors, and professionals.
+                    Feel free to reach out for collaborations, discussions, or just to say hello!</p>
+                <div class="contact-info">
+                    <div class="contact-item fade-in">
+                        <h3>Contact</h3>
+                        <a
+                            href="mailto:sunmukherjee200525@kgpian.iitkgp.ac.in">sunandmoon200519@gmail.com</a>
+                            <div>+91 8159876691</div>
+                    </div>
+                    <div class="contact-item fade-in">
+                        <h3>LinkedIn</h3>
+                        <a href="https://www.linkedin.com/in/sourasish-mukherjee-103626322/" target="_blank">Connect
+                            with me</a>
+                    </div>
+                    <div class="contact-item fade-in">
+                        <h3>GitHub</h3>
+                        <a href="https://github.com/sourasish-mukherjee1904" target="_blank">View my projects</a>
+                    </div>
+                    <div class="contact-item fade-in">
+                        <h3>Location</h3>
+                        <span>Kharagpur, West Bengal, India</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sourasish Mukherjee Portfolio. All rights reserved. | Promoting IITians portfolio at IIT KGP</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.skill-card, .project-card, .education-card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+
+</html>
