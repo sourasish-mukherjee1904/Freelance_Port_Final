@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://https://sourasish-mukherjee1904.github.io/Freelance_Port_Final//sitemap.xml
+Sitemap: https://sourasish-mukherjee1904.github.io/Freelance_Port_Final//sitemap.xml
