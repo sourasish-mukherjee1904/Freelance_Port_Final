@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://https://sourasish-mukherjee1904.github.io/Freelance-Profile//sitemap.xml
